@@ -6,38 +6,15 @@
     </div>
   </div>
 
-  {{ $posts := where .Site.RegularPages "Section" "posts" }}
-  {{ $first := index ($posts.ByDate.Reverse) 0 }}
-  {{ with $first }}
-  <div class="article-page">
-
-    <div class="article-header">
-      <div class="container">
-        <div class="article-meta">
-          {{ with .Params.tags }}
-            {{ range . }}<span class="article-tag">{{ . }}</span>{{ end }}
-          {{ end }}
-        </div>
-        <h1 class="article-title">{{ .Title }}</h1>
-        {{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
-      </div>
-    </div>
-
+  <div class="home-cta">
     <div class="container">
-      <div class="article-layout">
-        <article class="article-body">
-          {{ .Content }}
-        </article>
-      </div>
-
-      <div class="article-footer">
-        <div class="article-disclaimer">
-          <strong>合规声明：</strong>本文内容仅为学术教育目的，不构成任何投资建议（Non-CIF）。
-        </div>
-      </div>
+      {{ $posts := where .Site.RegularPages "Section" "posts" }}
+      {{ $first := index ($posts.ByDate) 0 }}
+      {{ with $first }}
+      <a href="{{ .RelPermalink }}" class="home-cta-primary">从创刊号开始读 →</a>
+      {{ end }}
+      <a href="{{ "/posts/" | relURL }}" class="home-cta-secondary">所有文章</a>
     </div>
-
   </div>
-  {{ end }}
 
 {{ end }}
