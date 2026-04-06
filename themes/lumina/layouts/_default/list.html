@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="posts-page">
+
+  <div class="posts-page-header">
+    <div class="container">
+      <div class="section-label">所有文章</div>
+      <h1 class="posts-page-title">深度解析，帮你看懂地图</h1>
+      <p class="posts-page-intro">Lumina Method Lab 撰写的原创内容，专为在法华人家庭整理法国财务系统的底层逻辑。</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="posts-full-list">
+      {{ range .Pages.ByDate.Reverse }}
+      <a class="post-card" href="{{ .RelPermalink }}">
+        <div class="post-card-meta">
+          <span class="post-card-date">{{ .Date.Format "2006年01月02日" }}</span>
+          {{ with .Params.tags }}
+            {{ range first 1 . }}<span class="post-card-tag">{{ . }}</span>{{ end }}
+          {{ end }}
+        </div>
+        <h2 class="post-card-title">{{ .Title }}</h2>
+        <p class="post-card-excerpt">{{ .Description | default .Summary }}</p>
+        <span class="post-card-link">阅读全文 →</span>
+      </a>
+      {{ else }}
+      <div class="posts-empty">
+        <p>文章即将发布，敬请关注。</p>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ if gt .Paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="文章翻页">
+      {{ if .Paginator.HasPrev }}
+        <a href="{{ .Paginator.Prev.URL }}" class="btn btn-secondary">← 较新</a>
+      {{ end }}
+      <span class="pagination-info">第 {{ .Paginator.PageNumber }} 页，共 {{ .Paginator.TotalPages }} 页</span>
+      {{ if .Paginator.HasNext }}
+        <a href="{{ .Paginator.Next.URL }}" class="btn btn-secondary">较旧 →</a>
+      {{ end }}
+    </nav>
+    {{ end }}
+  </div>
+
+</div>
+{{ end }}

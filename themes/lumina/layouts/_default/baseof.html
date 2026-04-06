@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ .Site.Title }}｜在法华人家庭财富传承{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}｜在法华人家庭财富传承{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}">
+  <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta name="theme-color" content="#1D4E89">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M6 5 L6 27 L26 27' fill='none' stroke='%231D4E89' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpolyline points='6,25 10,14 14,20 19,10 24,16' fill='none' stroke='%23E8A030' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "styles.css" | relURL }}">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="{{ "/" | relURL }}" class="nav-logo" aria-label="Lumina Method Lab 首页">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 5 L6 27 L26 27" stroke="#1D4E89" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="6,25 10,14 14,20 19,10 24,16" fill="none" stroke="#E8A030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="nav-logo-text"><strong>Lumina</strong> Method Lab</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="{{ "/" | relURL }}#problem">断层</a></li>
+        <li><a href="{{ "/" | relURL }}#for-whom">适合你吗</a></li>
+        <li><a href="{{ "/" | relURL }}#about">关于我们</a></li>
+        <li><a href="{{ "/posts/" | relURL }}">文章</a></li>
+        <li><a href="{{ "/" | relURL }}#waitlist" class="nav-cta">加入候补名单</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="{{ "/" | relURL }}" class="footer-logo" aria-label="Lumina Method Lab">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 5 L6 27 L26 27" stroke="#4A7FC1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="6,25 10,14 14,20 19,10 24,16" fill="none" stroke="#E8A030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span><strong>Lumina</strong> Method Lab</span>
+          </a>
+          <p class="footer-tagline">清晰决策实验室<br>Lyon, France</p>
+        </div>
+        <div class="footer-nav">
+          <h4>导航</h4>
+          <ul role="list">
+            <li><a href="{{ "/" | relURL }}#problem">断层：真正的问题</a></li>
+            <li><a href="{{ "/" | relURL }}#for-whom">这是否适合你</a></li>
+            <li><a href="{{ "/" | relURL }}#about">关于我们</a></li>
+            <li><a href="{{ "/posts/" | relURL }}">所有文章</a></li>
+            <li><a href="{{ "/" | relURL }}#waitlist">加入候补名单</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>联系我们</h4>
+          <ul role="list">
+            <li><a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        <p><strong>合规声明：</strong>Lumina Method Lab 提供的所有内容均为教育目的，不构成任何投资建议（Non-CIF）。我们不代客理财，不涉及任何中法跨境资金转移。所有内容仅针对"已在欧洲境内的合法税后资产"提供框架科普与工具实操。投资有风险，决策须谨慎。</p>
+        <p>© {{ now.Year }} Lumina Method Lab · Lyon, France · Auto-entreprise</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navLinks.classList.toggle('is-open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Sticky nav shadow
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // Smooth scroll for anchor links on same page
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 16;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    {{ block "scripts" . }}{{ end }}
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{{ define "main" }}
+<div class="article-page">
+
+  <div class="article-header">
+    <div class="container">
+      <a href="{{ "/posts/" | relURL }}" class="article-back">← 返回文章列表</a>
+      <div class="article-meta">
+        <span class="article-date">{{ .Date.Format "2006年01月02日" }}</span>
+        {{ with .Params.tags }}
+          {{ range . }}<span class="article-tag">{{ . }}</span>{{ end }}
+        {{ end }}
+      </div>
+      <h1 class="article-title">{{ .Title }}</h1>
+      {{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="article-layout">
+      <article class="article-body">
+        {{ .Content }}
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="article-sidebar-card">
+          <p class="article-sidebar-label">关于 Lumina Method Lab</p>
+          <p>我们帮助在法华人家庭，把财富的积累和传承建立在真正有效的地图上。</p>
+          <a href="{{ "/" | relURL }}#waitlist" class="btn btn-primary" style="margin-top:1rem;width:100%;justify-content:center;">加入候补名单</a>
+        </div>
+        {{ if .Site.RegularPages }}
+        <div class="article-sidebar-card">
+          <p class="article-sidebar-label">其他文章</p>
+          <ul class="article-related">
+            {{ $current := . }}
+            {{ range first 3 (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+              {{ if ne .Permalink $current.Permalink }}
+              <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+              {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </aside>
+    </div>
+
+    <div class="article-footer">
+      <div class="article-disclaimer">
+        <strong>合规声明：</strong>本文内容仅为教育目的，不构成任何投资建议（Non-CIF）。
+      </div>
+
+      <div class="article-nav-links">
+        {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" class="article-nav-link article-nav-link--prev">
+          <span>← 上一篇</span>
+          <strong>{{ .Title }}</strong>
+        </a>
+        {{ end }}
+        {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" class="article-nav-link article-nav-link--next">
+          <span>下一篇 →</span>
+          <strong>{{ .Title }}</strong>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+</div>
+{{ end }}

@@ -1,0 +1,18 @@
+baseURL = "https://luminamethod.eu/"
+languageCode = "zh-hans"
+title = "Lumina Method Lab"
+theme = "lumina"
+paginate = 10
+summaryLength = 60
+
+[params]
+  tagline = "清晰决策实验室"
+  description = "我们帮助在法华人家庭，把财富的积累和传承建立在真正有效的地图上——因为账户里的数字可以归零，看懂地图的能力不会。"
+  email = "hello@luminamethod.eu"
+  location = "Lyon, France"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  noClasses = false
