@@ -1,5 +1,11 @@
 {{ define "main" }}
 
+  <div class="home-intro">
+    <div class="container">
+      <p class="home-intro-text">这里记录我们对一件事的思考：在法国生活的华人家庭，怎样把财务的逻辑真正想清楚——不只是账户里的数字，而是那张能传给下一代的航海图。</p>
+    </div>
+  </div>
+
   {{ $posts := where .Site.RegularPages "Section" "posts" }}
   {{ $first := index ($posts.ByDate.Reverse) 0 }}
   {{ with $first }}

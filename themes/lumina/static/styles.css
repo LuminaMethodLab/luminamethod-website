@@ -769,6 +769,20 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
 /* ── Article reading view ────────────────────────────────────── */
 .article-page { padding-bottom: clamp(3rem, 6vw, 5rem); }
 
+.home-intro {
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 0 0;
+  margin-bottom: 2rem;
+}
+.home-intro-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 2.5rem;
+  line-height: 1.7;
+}
+
 .article-header {
   background: var(--card);
   border-bottom: 1px solid var(--border-light);
