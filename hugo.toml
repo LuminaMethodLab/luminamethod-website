@@ -2,7 +2,8 @@ baseURL = "https://luminamethod.eu/"
 languageCode = "zh-hans"
 title = "Lumina Method Lab"
 theme = "lumina"
-paginate = 10
+[pagination]
+  pagerSize = 10
 summaryLength = 60
 
 [params]
