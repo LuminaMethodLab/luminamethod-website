@@ -915,6 +915,38 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
 .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .article-body a:hover { color: var(--accent-dark); }
 
+/* Buttons inside article body — reset link overrides */
+.article-body a.btn { color: #fff; text-decoration: none; }
+.article-body a.btn:hover { color: #fff; }
+.article-body a.btn-secondary,
+.article-body a.btn-outline { color: var(--accent); }
+.article-body a.btn-secondary:hover,
+.article-body a.btn-outline:hover { color: var(--accent); }
+
+/* Tables */
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+.article-body th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  border-bottom: 2px solid var(--border);
+  background: var(--tint);
+}
+.article-body td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text);
+  vertical-align: top;
+}
+.article-body tr:last-child td { border-bottom: none; }
+.article-body tr:hover td { background: var(--tint); }
+
 .article-body blockquote {
   margin: 1.5rem 0;
   padding: 1rem 1.5rem;
