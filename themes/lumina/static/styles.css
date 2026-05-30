@@ -933,10 +933,10 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
 .article-body th {
   text-align: left;
   font-weight: 600;
-  color: var(--text);
+  color: #fff;
   padding: 0.6rem 1rem;
-  border-bottom: 2px solid var(--border);
-  background: var(--tint);
+  border-bottom: 2px solid var(--accent-dark);
+  background: var(--accent);
 }
 .article-body td {
   padding: 0.6rem 1rem;
