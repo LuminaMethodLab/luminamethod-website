@@ -622,7 +622,7 @@
 
     // Legend
     const legendY = PAD.top + 4;
-    [[colors[0], '今天开始（实线）'], [colors[1], '推迟5年（虚线）']].forEach(([c, label], i) => {
+    [[colors[0], '今天开始（实线）'], [colors[1], '推迟10年（虚线）']].forEach(([c, label], i) => {
       const lx = PAD.left + i * 170;
       ctx.beginPath();
       ctx.strokeStyle = c;
@@ -764,13 +764,13 @@
     // ── Growth chart data ──
     const chartLabels = [];
     const series0 = { values: [] }; // start today
-    const series5 = { values: [] }; // start +5y (delay 5)
-    const startDelay = 5;
+    const series10 = { values: [] }; // start +10y (delay 10)
+    const startDelay = 10;
     for (let yr = 0; yr <= baseYears; yr++) {
       chartLabels.push(age + yr);
       series0.values.push(futureValue(monthly, initial, rate, yr));
 
-      // 延迟5年场景：初始资金从第0年开始持续复利（不论是否已开始定投）；
+      // 延迟10年场景：初始资金从第0年开始持续复利（不论是否已开始定投）；
       // 每月定投从第 startDelay 年才开始计入。
       const r = rate / 100 / 12;
       const nTotal = yr * 12;
@@ -780,13 +780,13 @@
         const nMonthly = (yr - startDelay) * 12;
         monthlyPart = r === 0 ? monthly * nMonthly : monthly * ((Math.pow(1 + r, nMonthly) - 1) / r);
       }
-      series5.values.push(grownInitial + monthlyPart);
+      series10.values.push(grownInitial + monthlyPart);
     }
 
     // ── Show results first, then draw chart after layout is ready ──
     document.getElementById('results').style.display = 'block';
     requestAnimationFrame(() => {
-      drawChart([series0, series5], chartLabels, rate);
+      drawChart([series0, series10], chartLabels, rate);
       document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
