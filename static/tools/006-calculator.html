@@ -761,7 +761,7 @@
         </div>`;
     }).join('');
 
-    // ── Growth chart ──
+    // ── Growth chart data ──
     const chartLabels = [];
     const series0 = { values: [] }; // start today
     const series5 = { values: [] }; // start +5y (delay 5)
@@ -782,11 +782,13 @@
       }
       series5.values.push(grownInitial + monthlyPart);
     }
-    drawChart([series0, series5], chartLabels, rate);
 
-    // ── Show results ──
+    // ── Show results first, then draw chart after layout is ready ──
     document.getElementById('results').style.display = 'block';
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    requestAnimationFrame(() => {
+      drawChart([series0, series5], chartLabels, rate);
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
 
 
