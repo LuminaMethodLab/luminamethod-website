@@ -572,7 +572,7 @@
     const ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
 
-    const PAD = { top: 16, right: 24, bottom: 36, left: 62 };
+    const PAD = { top: 16, right: 24, bottom: 42, left: 70 };
     const cW = W - PAD.left - PAD.right;
     const cH = H - PAD.top - PAD.bottom;
 
@@ -590,7 +590,7 @@
       ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + cW, y); ctx.stroke();
       const val = maxVal * (1 - i / 4);
       ctx.fillStyle = '#A8A29E';
-      ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
       ctx.textAlign = 'right';
       ctx.fillText(fmtEur(val), PAD.left - 6, y + 4);
     }
@@ -598,10 +598,11 @@
     // X axis labels
     ctx.fillStyle = '#A8A29E';
     ctx.textAlign = 'center';
-    ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
     for (let i = 0; i < steps; i++) {
-      if (i === 0 || i === steps - 1 || i % Math.ceil(steps / 6) === 0) {
-        ctx.fillText(labels[i] + '岁', xScale(i), H - 8);
+      const ageValue = labels[i];
+      if (i === 0 || i === steps - 1 || ageValue % 5 === 0) {
+        ctx.fillText(ageValue + '岁', xScale(i), H - 8);
       }
     }
 
@@ -633,7 +634,7 @@
       ctx.setLineDash([]);
       ctx.fillStyle = '#44403C';
       ctx.textAlign = 'left';
-      ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.font = '13px -apple-system, BlinkMacSystemFont, sans-serif';
       ctx.fillText(label, lx + 28, legendY + 4);
     });
   }
